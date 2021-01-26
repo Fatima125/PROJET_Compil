@@ -1,0 +1,8 @@
+import ISIL.io;
+import ISIL.lang;
+public class $ISIL_B{
+    Entier $x,$z;
+    Reel $y;
+    Entier @tab[5],@tab2[3];
+    CONST Chaine $lol:=shi;
+}
