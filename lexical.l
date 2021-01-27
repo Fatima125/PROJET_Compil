@@ -3,11 +3,10 @@
 int nb_ligne=1;
 %}
 lettres [a-zA-Z]
-cst_chaine [a-zA-Z]+
-cst_entier ([1-9][0-9]*|0)
 chiffres [0-9]
 idf "$"{lettres}({lettres}|{chiffres}|_)*
 idf_tab "@"{lettres}({lettres}|{chiffres}|_)*
+
 
 %%
 import return mc_import;
@@ -32,10 +31,17 @@ Chaine return mc_chaine;
 ; return pvg;
 "+" return plus;
 "-" return moins;
-cst_chaine return mc_cst_chaine;
-cst_entier return mc_cst_entier;
+main return mc_main;
+"(" return par_ov;
+")" return par_fr;
+"/" return mc_div;
 CONST return mc_const;
 := return mc_aff;
+For return mc_for;
+"<" return mc_inf;
+In return mc_in;
+%d return mc_format;
+\" return cot;
 [ \t]
 \n nb_ligne++;
 . {printf("erreur lexicale a la ligne %d sur l'entite %s\n",nb_ligne,yytext);

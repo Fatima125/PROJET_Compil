@@ -64,8 +64,15 @@
      plus = 280,
      moins = 281,
      mc_lettres = 282,
-     mc_cst_chaine = 283,
-     mc_cst_entier = 284
+     mc_main = 283,
+     par_ov = 284,
+     par_fr = 285,
+     mc_div = 286,
+     mc_inf = 287,
+     mc_for = 288,
+     mc_in = 289,
+     mc_format = 290,
+     cot = 291
    };
 #endif
 
