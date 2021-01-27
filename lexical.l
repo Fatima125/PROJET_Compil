@@ -19,7 +19,9 @@ class return mc_class;
 Entier return mc_entier;
 Reel return mc_reel;
 Chaine return mc_chaine;
-{idf} return idf;
+{idf} { if(yyleng<=25) return idf;
+      else printf("erreur lexical : idf trop long : %s",yytext);
+      }
 {idf_tab} return idf_tab;
 {chiffres} return cst;
 {lettres} return mc_lettres;

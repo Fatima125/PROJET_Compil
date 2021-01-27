@@ -85,3 +85,7 @@ main()
     yyparse();
 }
 yywrap() {}
+yyerror(char * msg)
+{
+       printf("erreur syntaxique!!");
+}
