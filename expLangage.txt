@@ -7,7 +7,7 @@ public class $ISIL_B{
     CONST Entier $lol:=3;
     main()
     {
-       $x :=2 ;
+       $x :=2 
        $x := $y+$z ;
       @Tab[2] :=$x+$y/2 ;
       For($i:=1 ;$i<1 ;$i++)

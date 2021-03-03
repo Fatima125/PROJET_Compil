@@ -435,7 +435,7 @@ char *yytext;
 #define INITIAL 0
 #line 2 "lexical.l"
 #include "synt.tab.h"
-int nb_ligne=1;
+extern nb_ligne;
 #line 440 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in

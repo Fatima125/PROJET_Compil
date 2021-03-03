@@ -67,9 +67,14 @@
 
 /* Copy the first part of user declarations.  */
 
+/* Line 189 of yacc.c  */
+#line 1 "synt.y"
+
+nb_ligne=1;
+
 
 /* Line 189 of yacc.c  */
-#line 73 "synt.tab.c"
+#line 78 "synt.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -147,7 +152,7 @@ typedef int YYSTYPE;
 
 
 /* Line 264 of yacc.c  */
-#line 151 "synt.tab.c"
+#line 156 "synt.tab.c"
 
 #ifdef short
 # undef short
@@ -453,11 +458,11 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,     4,     4,     7,     9,    10,    11,    13,    15,    16,
-      18,    19,    20,    22,    24,    25,    27,    28,    29,    31,
-      32,    34,    35,    36,    38,    39,    41,    43,    44,    46,
-      48,    49,    51,    53,    55,    56,    61,    63,    64,    66,
-      68,    69,    71,    72,    73,    75,    76,    78,    80,    80
+       0,     7,     7,    10,    12,    13,    14,    16,    18,    19,
+      21,    22,    23,    25,    27,    28,    30,    31,    32,    34,
+      35,    37,    38,    39,    41,    42,    44,    46,    47,    49,
+      51,    52,    54,    56,    58,    59,    64,    66,    67,    69,
+      71,    72,    74,    75,    76,    78,    79,    81,    83,    83
 };
 #endif
 
@@ -1438,7 +1443,7 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 4 "synt.y"
+#line 7 "synt.y"
     {printf("pgm syntaxiquement correcte");
                             YYACCEPT;}
     break;
@@ -1446,7 +1451,7 @@ yyreduce:
 
 
 /* Line 1455 of yacc.c  */
-#line 1450 "synt.tab.c"
+#line 1455 "synt.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1658,7 +1663,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 82 "synt.y"
+#line 85 "synt.y"
 
 main()
 {
@@ -1667,6 +1672,6 @@ main()
 yywrap() {}
 yyerror(char * msg)
 {
-       printf("erreur syntaxique!!");
+       printf("erreur syntaxique à la ligne %d\n",nb_ligne);
 }
 

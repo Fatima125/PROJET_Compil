@@ -1,3 +1,6 @@
+%{
+nb_ligne=1;
+%}
 %token mc_import pvg bib_io bib_lang err mc_public mc_private mc_protected mc_class idf aco_ov aco_fr mc_entier mc_reel mc_chaine vrg idf_tab 
        cr_ov cr_fr cst mc_const mc_aff  plus moins mc_lettres mc_main par_ov par_fr mc_div mc_inf mc_for mc_in mc_format cot
 %%
@@ -87,5 +90,5 @@ main()
 yywrap() {}
 yyerror(char * msg)
 {
-       printf("erreur syntaxique!!");
+       printf("erreur syntaxique à la ligne %d\n",nb_ligne);
 }
