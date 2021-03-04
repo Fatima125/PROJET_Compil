@@ -72,7 +72,9 @@
      mc_for = 288,
      mc_in = 289,
      mc_format = 290,
-     cot = 291
+     cot = 291,
+     mc_chaine_car = 292,
+     mc_out = 293
    };
 #endif
 

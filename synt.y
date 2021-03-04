@@ -2,7 +2,7 @@
 nb_ligne=1;
 %}
 %token mc_import pvg bib_io bib_lang err mc_public mc_private mc_protected mc_class idf aco_ov aco_fr mc_entier mc_reel mc_chaine vrg idf_tab 
-       cr_ov cr_fr cst mc_const mc_aff  plus moins mc_lettres mc_main par_ov par_fr mc_div mc_inf mc_for mc_in mc_format cot
+       cr_ov cr_fr cst mc_const mc_aff  plus moins mc_lettres mc_main par_ov par_fr mc_div mc_inf mc_for mc_in mc_format cot mc_chaine_car mc_out
 %%
 S:LISTE_BIB HEADER_CLASS aco_ov CORPS  aco_fr {printf("pgm syntaxiquement correcte");
                             YYACCEPT}
@@ -30,6 +30,7 @@ INSTRUCTION:INST INSTRUCTION
 INST:AFFECTATION 
       |BOUCLE
       |LECTURE
+      |ECRITURE
 ;
 AFFECTATION: AFF  AFFECTATION 
             |
@@ -47,6 +48,11 @@ LECTURE:LECT LECTURE
         |
 ;
 LECT:mc_in par_ov cot mc_format cot vrg idf par_fr pvg 
+;
+ECRITURE:ECRIT ECRITURE
+         |
+;
+ECRIT:mc_out par_ov mc_chaine_car par_fr pvg
 ;
 DEC_CONST:DEC_AC_AFF
          |DEC_SANS_AFF           

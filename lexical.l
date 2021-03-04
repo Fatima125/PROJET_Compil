@@ -6,6 +6,7 @@ lettres [a-zA-Z]
 chiffres [0-9]
 idf "$"{lettres}({lettres}|{chiffres}|_)*
 idf_tab "@"{lettres}({lettres}|{chiffres}|_)*
+chaine_car [^\"]
 
 
 %%
@@ -44,6 +45,8 @@ For return mc_for;
 In return mc_in;
 %d return mc_format;
 \" return cot;
+[\"]{chaine_car}*[\"] return mc_chaine_car;
+Out return mc_out;
 [ \t]
 \n nb_ligne++;
 . {printf("erreur lexicale a la ligne %d sur l'entite %s\n",nb_ligne,yytext);
