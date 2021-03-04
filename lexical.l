@@ -3,10 +3,13 @@
 extern nb_ligne;
 %}
 lettres [a-zA-Z]
-chiffres [0-9]
+chiffres ([+-]?[1-9][0-9]*)|0
+taille ([1-9])([0-9]*)
 idf "$"{lettres}({lettres}|{chiffres}|_)*
 idf_tab "@"{lettres}({lettres}|{chiffres}|_)*
 chaine_car [^\"]
+commentaire .|\n
+format %d|%f|%s
 
 
 %%
@@ -25,6 +28,7 @@ Chaine return mc_chaine;
       }
 {idf_tab} return idf_tab;
 {chiffres} return cst;
+{taille} return mc_taille;
 {lettres} return mc_lettres;
 "[" return cr_ov;
 "]" return cr_fr;
@@ -43,7 +47,8 @@ CONST return mc_const;
 For return mc_for;
 "<" return mc_inf;
 In return mc_in;
-%d return mc_format;
+[\"]{format}[\"] return mc_format;
+##{commentaire}*## return mc_commentaire;
 \" return cot;
 [\"]{chaine_car}*[\"] return mc_chaine_car;
 Out return mc_out;

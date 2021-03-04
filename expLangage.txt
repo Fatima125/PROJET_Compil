@@ -1,20 +1,22 @@
 import ISIL.io;
 import ISIL.lang;
 public class $ISIL_B{
+    ## salut 
+    tout le monde##
     Entier $x,$z;
     Reel $y;
-    Entier @tab[5],@tab2[3];
-    CONST Entier $lol:=3;
+    Entier @tab[1],@tab2[10];
+    CONST Entier $lol:=-25;
     main()
     {
        $x :=2;
        $x := $y+$z;
-      @Tab[2] :=$x+$y/2 ;
-      For($i:=1 ;$i<1 ;$i++)
+      @Tab[12] :=$x+$y/2 ;
+      For($i:=1 ;$i<100 ;$i++)
       {  
 
       }
-      In("%d", $A); 
+      In("%d",$A); 
       Out("salut"); 
     }
 }

@@ -74,7 +74,9 @@
      mc_format = 290,
      cot = 291,
      mc_chaine_car = 292,
-     mc_out = 293
+     mc_out = 293,
+     mc_commentaire = 294,
+     mc_taille = 295
    };
 #endif
 
