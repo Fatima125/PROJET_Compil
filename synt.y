@@ -40,15 +40,10 @@ INST:AFFECTATION
 AFFECTATION: AFF  AFFECTATION 
             |
 ;
-AFF:idf mc_aff EXP pvg 
-   |idf_tab cr_ov cst cr_fr mc_aff EXP pvg
-;
-EXP:PGAUCHE OPERATION EXP
-   |PGAUCHE
-;
-PGAUCHE:idf
-       |cst
-       |idf_tab cr_ov cst cr_fr
+AFF:idf mc_aff cst pvg
+   |idf mc_aff idf mc_div cst pvg 
+   |idf mc_aff idf plus idf pvg
+   |idf_tab cr_ov cst cr_fr mc_aff idf plus idf mc_div cst pvg
 ;
 OPERATION:plus
          |moins
