@@ -480,10 +480,10 @@ static const yytype_uint8 yyrline[] =
 {
        0,    12,    12,    15,    17,    18,    19,    21,    23,    24,
       26,    27,    28,    30,    32,    33,    35,    36,    37,    38,
-      40,    41,    43,    44,    45,    46,    53,    54,    56,    58,
-      59,    61,    63,    64,    66,    68,    69,    71,    73,    78,
-      80,    81,    83,    85,    86,    88,    89,    90,    92,    93,
-      95,    97,    97
+      40,    41,    43,    44,    47,    48,    55,    56,    58,    60,
+      61,    63,    65,    66,    68,    70,    71,    73,    75,    80,
+      82,    83,    85,    87,    88,    90,    91,    92,    94,    95,
+      97,    99,    99
 };
 #endif
 
@@ -1478,10 +1478,19 @@ yyreduce:
                             YYACCEPT;}
     break;
 
+  case 23:
+
+/* Line 1455 of yacc.c  */
+#line 44 "synt.y"
+    { if((yyvsp[(5) - (6)].entier)==0)
+                                      printf("erreur semantique a la ligne %d division par 0\n",nb_ligne);
+                                   ;}
+    break;
+
 
 
 /* Line 1455 of yacc.c  */
-#line 1485 "synt.tab.c"
+#line 1494 "synt.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1693,11 +1702,12 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 99 "synt.y"
+#line 101 "synt.y"
 
 main()
 {
     yyparse();
+    afficher();
 }
 yywrap() {}
 yyerror(char * msg)

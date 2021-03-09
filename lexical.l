@@ -2,6 +2,54 @@
 #include "synt.tab.h"
 extern nb_ligne;
 extern YYSTYPE yylval;
+
+//je vais commencer a programmer ma tables des symboles
+//declaration (structure de la table des symboles)
+       typedef struct
+       {
+             char NomEntite[20];
+             char CodeEntite[20];
+             char TypeEntite[20];
+       }TypeTS;
+  //initialisation d'un tableau
+       TypeTS ts[100];
+  //un compteur global pour la table des symboles
+       int CpTabSym=0;
+   //définir une fonction recherche
+       int recherche(char entite[])
+       {
+             int i=0;
+             while(i<CpTabSym)
+             {
+                   if(strcmp(entite,ts[i].NomEntite)==0) return i;
+                   i++;
+             }
+             return -1;
+       }
+  //définir la fonction inserer
+        void inserer(char entite[],char code[])
+        {
+              if(recherche(entite)==-1)
+              {
+                    strcpy(ts[CpTabSym].NomEntite,entite);
+                    strcpy(ts[CpTabSym].CodeEntite,code);
+                    CpTabSym++;
+              }
+        }
+  //définir la fonction afficher
+        void afficher()
+        {
+              printf("\n/**************Table des symboles*******************/\n");
+              printf("_________________________________________________\n");
+              printf("\t| NomEntite |  CodeEntite  | TypeEntite\n");
+              printf("_________________________________________________\n");
+              int i=0;
+              while(i<CpTabSym)
+              {
+                    printf("\t|%10s |%12s  | %12s\n",ts[i].NomEntite,ts[i].CodeEntite,ts[i].TypeEntite);
+                    i++;
+              }
+        } 
 %}
 lettres [a-zA-Z]
 chiffres ([+-]?[1-9][0-9]*)|0
@@ -20,11 +68,15 @@ public return mc_public;
 private return mc_private;
 protected return mc_protected;
 class return mc_class;
-Entier return mc_entier;
-Reel return mc_reel;
-Chaine return mc_chaine;
+Entier { yylval.str=strdup("Entier");
+         return mc_entier;}
+Reel { yylval.str=strdup("Reel");
+       return mc_reel;}
+Chaine {yylval.str=strdup("Chaine");
+        return mc_chaine;}
 {idf} {  yylval.str=strdup(yytext);
-         if(yyleng<=25) return idf;
+         if(yyleng<=25){ inserer(yytext,"idf");
+                         return idf;}
          else printf("erreur lexical : idf trop long : %s",yytext);
       }
 {idf_tab} return idf_tab;

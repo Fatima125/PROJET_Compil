@@ -6,7 +6,7 @@ nb_ligne=1;
        char* str;
        float reel;
 }
-%token mc_import pvg bib_io bib_lang err mc_public mc_private mc_protected mc_class <str>idf aco_ov aco_fr mc_entier mc_reel mc_chaine vrg idf_tab 
+%token mc_import pvg bib_io bib_lang err mc_public mc_private mc_protected mc_class <str>idf aco_ov aco_fr <str>mc_entier <str>mc_reel <str>mc_chaine vrg idf_tab 
        cr_ov cr_fr <entier>cst mc_const mc_aff  plus moins mc_lettres mc_main par_ov par_fr mc_div mc_inf mc_for mc_in mc_format cot mc_chaine_car mc_out mc_commentaire multiplication
 %%
 S:LISTE_BIB HEADER_CLASS aco_ov CORPS  aco_fr {printf("pgm syntaxiquement correcte");
@@ -41,7 +41,9 @@ AFFECTATION: AFF  AFFECTATION
             |
 ;
 AFF:idf mc_aff cst pvg
-   |idf mc_aff idf mc_div cst pvg 
+   |idf mc_aff idf mc_div cst pvg { if($5==0)
+                                      printf("erreur semantique a la ligne %d division par 0\n",nb_ligne);
+                                   }
    |idf mc_aff idf plus idf pvg
    |idf_tab cr_ov cst cr_fr mc_aff idf plus idf mc_div cst pvg
 ;
@@ -100,6 +102,7 @@ NOM_BIB:bib_io|bib_lang
 main()
 {
     yyparse();
+    afficher();
 }
 yywrap() {}
 yyerror(char * msg)
