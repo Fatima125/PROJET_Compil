@@ -60,6 +60,15 @@ extern YYSTYPE yylval;
                     i++;
               }
         } 
+        //définir une fonction qui détecte la double déclaration
+        int doubleDeclaration (char entite[])
+        {
+              int pos;
+              pos=recherche(entite);
+              if(strcmp(ts[pos].TypeEntite,"")==0)
+                 return 0;
+               else return -1;  
+        }
 %}
 lettres [a-zA-Z]
 chiffres ([+-]?[1-9][0-9]*)|0

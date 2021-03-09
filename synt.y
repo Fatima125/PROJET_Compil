@@ -1,3 +1,4 @@
+
 %{
 nb_ligne=1;
 char sauvType[20];
@@ -82,8 +83,14 @@ LISTE_IDF_TAB:idf_tab cr_ov cst cr_fr vrg LISTE_IDF_TAB
 ;
 DEC_VAR: TYPE LISTE_IDF pvg
 ;
-LISTE_IDF:idf vrg LISTE_IDF {insererTYPE($1,sauvType);}
-          |idf {insererTYPE($1,sauvType);}
+LISTE_IDF:idf vrg LISTE_IDF { if(doubleDeclaration($1)==0)
+                                    insererTYPE($1,sauvType);
+                              else
+                                    printf("erreur semantique double declaration %s a la ligne %d\n",$1,nb_ligne);      }
+          |idf { if(doubleDeclaration($1)==0)
+                                    insererTYPE($1,sauvType);
+                              else
+                                    printf("erreur semantique double declaration %s a la ligne %d\n",$1,nb_ligne);      }
 ;
 TYPE:mc_entier {strcpy(sauvType,$1);}
     |mc_reel   {strcpy(sauvType,$1);}
