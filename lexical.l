@@ -1,10 +1,10 @@
 %{
 #include "synt.tab.h"
 extern nb_ligne;
+extern YYSTYPE yylval;
 %}
 lettres [a-zA-Z]
 chiffres ([+-]?[1-9][0-9]*)|0
-taille ([1-9])([0-9]*)
 idf "$"{lettres}({lettres}|{chiffres}|_)*
 idf_tab "@"{lettres}({lettres}|{chiffres}|_)*
 chaine_car [^\"]
@@ -23,12 +23,13 @@ class return mc_class;
 Entier return mc_entier;
 Reel return mc_reel;
 Chaine return mc_chaine;
-{idf} { if(yyleng<=25) return idf;
-      else printf("erreur lexical : idf trop long : %s",yytext);
+{idf} {  yylval.str=strdup(yytext);
+         if(yyleng<=25) return idf;
+         else printf("erreur lexical : idf trop long : %s",yytext);
       }
 {idf_tab} return idf_tab;
-{chiffres} return cst;
-{taille} return mc_taille;
+{chiffres} {  yylval.entier=atoi(yytext);
+              return cst; }
 {lettres} return mc_lettres;
 "[" return cr_ov;
 "]" return cr_fr;
@@ -38,6 +39,7 @@ Chaine return mc_chaine;
 ; return pvg;
 "+" return plus;
 "-" return moins;
+"*" return multiplication;
 main return mc_main;
 "(" return par_ov;
 ")" return par_fr;

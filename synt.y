@@ -1,8 +1,13 @@
 %{
 nb_ligne=1;
 %}
-%token mc_import pvg bib_io bib_lang err mc_public mc_private mc_protected mc_class idf aco_ov aco_fr mc_entier mc_reel mc_chaine vrg idf_tab 
-       cr_ov cr_fr cst mc_const mc_aff  plus moins mc_lettres mc_main par_ov par_fr mc_div mc_inf mc_for mc_in mc_format cot mc_chaine_car mc_out mc_commentaire mc_taille
+%union{
+       int entier;
+       char* str;
+       float reel;
+}
+%token mc_import pvg bib_io bib_lang err mc_public mc_private mc_protected mc_class <str>idf aco_ov aco_fr mc_entier mc_reel mc_chaine vrg idf_tab 
+       cr_ov cr_fr <entier>cst mc_const mc_aff  plus moins mc_lettres mc_main par_ov par_fr mc_div mc_inf mc_for mc_in mc_format cot mc_chaine_car mc_out mc_commentaire multiplication
 %%
 S:LISTE_BIB HEADER_CLASS aco_ov CORPS  aco_fr {printf("pgm syntaxiquement correcte");
                             YYACCEPT}
@@ -35,9 +40,20 @@ INST:AFFECTATION
 AFFECTATION: AFF  AFFECTATION 
             |
 ;
-AFF:idf mc_aff cst pvg
-   |idf mc_aff idf plus idf pvg
-   |idf_tab cr_ov cst cr_fr mc_aff idf plus idf mc_div cst pvg
+AFF:idf mc_aff EXP pvg 
+   |idf_tab cr_ov cst cr_fr mc_aff EXP pvg
+;
+EXP:PGAUCHE OPERATION EXP
+   |PGAUCHE
+;
+PGAUCHE:idf
+       |cst
+       |idf_tab cr_ov cst cr_fr
+;
+OPERATION:plus
+         |moins
+         |mc_div
+         |multiplication
 ;
 BOUCLE:BCL BOUCLE
        |
@@ -66,8 +82,8 @@ signe : plus
 ;
 DEC_TAB: TYPE LISTE_IDF_TAB pvg
 ;
-LISTE_IDF_TAB:idf_tab cr_ov mc_taille cr_fr vrg LISTE_IDF_TAB
-              |idf_tab cr_ov mc_taille cr_fr
+LISTE_IDF_TAB:idf_tab cr_ov cst cr_fr vrg LISTE_IDF_TAB
+              |idf_tab cr_ov cst cr_fr
 ;
 DEC_VAR: TYPE LISTE_IDF pvg
 ;

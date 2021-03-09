@@ -76,14 +76,28 @@
      mc_chaine_car = 292,
      mc_out = 293,
      mc_commentaire = 294,
-     mc_taille = 295
+     multiplication = 295
    };
 #endif
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union YYSTYPE
+{
+
+/* Line 1676 of yacc.c  */
+#line 4 "synt.y"
+
+       int entier;
+       char* str;
+       float reel;
+
+
+
+/* Line 1676 of yacc.c  */
+#line 100 "synt.tab.h"
+} YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
