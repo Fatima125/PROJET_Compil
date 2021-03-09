@@ -61,7 +61,7 @@ extern YYSTYPE yylval;
               }
         } 
         //définir une fonction qui détecte la double déclaration
-        int doubleDeclaration (char entite[])
+        int Declaration (char entite[])
         {
               int pos;
               pos=recherche(entite);
@@ -98,7 +98,8 @@ Chaine {yylval.str=strdup("Chaine");
                          return idf;}
          else printf("erreur lexical : idf trop long : %s",yytext);
       }
-{idf_tab} return idf_tab;
+{idf_tab} { yylval.str=strdup(yytext);
+            return idf_tab;}
 {chiffres} {  yylval.entier=atoi(yytext);
               return cst; }
 {lettres} return mc_lettres;

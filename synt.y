@@ -8,7 +8,7 @@ char sauvType[20];
        char* str;
        float reel;
 }
-%token mc_import pvg bib_io bib_lang err mc_public mc_private mc_protected mc_class <str>idf aco_ov aco_fr <str>mc_entier <str>mc_reel <str>mc_chaine vrg idf_tab 
+%token mc_import pvg bib_io bib_lang err mc_public mc_private mc_protected mc_class <str>idf aco_ov aco_fr <str>mc_entier <str>mc_reel <str>mc_chaine vrg <str>idf_tab 
        cr_ov cr_fr <entier>cst mc_const mc_aff  plus moins mc_lettres mc_main par_ov par_fr mc_div mc_inf mc_for mc_in mc_format cot mc_chaine_car mc_out mc_commentaire multiplication
 %%
 S:LISTE_BIB HEADER_CLASS aco_ov CORPS  aco_fr {printf("pgm syntaxiquement correcte");
@@ -42,7 +42,9 @@ INST:AFFECTATION
 AFFECTATION: AFF  AFFECTATION 
             |
 ;
-AFF:idf mc_aff cst pvg
+AFF:idf mc_aff cst pvg {if(Declaration($1)==0)
+                           printf("erreur semantique %s non declarer a la ligne %d\n",$1,nb_ligne);  
+                        }
    |idf mc_aff idf mc_div cst pvg { if($5==0)
                                       printf("erreur semantique a la ligne %d division par 0\n",nb_ligne);
                                    }
@@ -78,16 +80,20 @@ DEC_AC_AFF: mc_const TYPE idf mc_aff cst pvg
 ;
 DEC_TAB: TYPE LISTE_IDF_TAB pvg
 ;
-LISTE_IDF_TAB:idf_tab cr_ov cst cr_fr vrg LISTE_IDF_TAB
-              |idf_tab cr_ov cst cr_fr
+LISTE_IDF_TAB:idf_tab cr_ov cst cr_fr vrg LISTE_IDF_TAB {if($3<0)
+                                         printf("erreur semantique la taille du tableau %s doit etre positive , a la ligne %d\n",$1,nb_ligne);
+                                       }
+              |idf_tab cr_ov cst cr_fr {if($3<0)
+                                         printf("erreur semantique la taille du tableau %s doit etre positive , a la ligne %d\n",$1,nb_ligne);
+                                       }
 ;
 DEC_VAR: TYPE LISTE_IDF pvg
 ;
-LISTE_IDF:idf vrg LISTE_IDF { if(doubleDeclaration($1)==0)
+LISTE_IDF:idf vrg LISTE_IDF { if(Declaration($1)==0)
                                     insererTYPE($1,sauvType);
                               else
                                     printf("erreur semantique double declaration %s a la ligne %d\n",$1,nb_ligne);      }
-          |idf { if(doubleDeclaration($1)==0)
+          |idf { if(Declaration($1)==0)
                                     insererTYPE($1,sauvType);
                               else
                                     printf("erreur semantique double declaration %s a la ligne %d\n",$1,nb_ligne);      }
