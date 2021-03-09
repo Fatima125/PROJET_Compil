@@ -3,7 +3,7 @@ import ISIL.lang;
 public class $ISIL_B{
     ## salut 
     tout le monde##
-    Entier $x,$z;
+    Entier $x,$y;
     Reel $y;
     Entier @tab[12],@tab2[10];
     CONST Entier $lol:=-25;

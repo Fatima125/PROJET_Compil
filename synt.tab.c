@@ -71,10 +71,11 @@
 #line 1 "synt.y"
 
 nb_ligne=1;
+char sauvType[20];
 
 
 /* Line 189 of yacc.c  */
-#line 78 "synt.tab.c"
+#line 79 "synt.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -149,7 +150,7 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 4 "synt.y"
+#line 5 "synt.y"
 
        int entier;
        char* str;
@@ -158,7 +159,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 162 "synt.tab.c"
+#line 163 "synt.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -170,7 +171,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 174 "synt.tab.c"
+#line 175 "synt.tab.c"
 
 #ifdef short
 # undef short
@@ -478,12 +479,12 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    12,    12,    15,    17,    18,    19,    21,    23,    24,
-      26,    27,    28,    30,    32,    33,    35,    36,    37,    38,
-      40,    41,    43,    44,    47,    48,    55,    56,    58,    60,
-      61,    63,    65,    66,    68,    70,    71,    73,    75,    80,
-      82,    83,    85,    87,    88,    90,    91,    92,    94,    95,
-      97,    99,    99
+       0,    13,    13,    16,    18,    19,    20,    22,    24,    25,
+      27,    28,    29,    31,    33,    34,    36,    37,    38,    39,
+      41,    42,    44,    45,    48,    49,    56,    57,    59,    61,
+      62,    64,    66,    67,    69,    71,    72,    74,    76,    78,
+      80,    81,    83,    85,    86,    88,    89,    90,    92,    93,
+      95,    97,    97
 };
 #endif
 
@@ -1473,7 +1474,7 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 12 "synt.y"
+#line 13 "synt.y"
     {printf("pgm syntaxiquement correcte");
                             YYACCEPT;}
     break;
@@ -1481,16 +1482,51 @@ yyreduce:
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 44 "synt.y"
+#line 45 "synt.y"
     { if((yyvsp[(5) - (6)].entier)==0)
                                       printf("erreur semantique a la ligne %d division par 0\n",nb_ligne);
                                    ;}
     break;
 
+  case 43:
+
+/* Line 1455 of yacc.c  */
+#line 85 "synt.y"
+    {insererTYPE((yyvsp[(1) - (3)].str),sauvType);;}
+    break;
+
+  case 44:
+
+/* Line 1455 of yacc.c  */
+#line 86 "synt.y"
+    {insererTYPE((yyvsp[(1) - (1)].str),sauvType);;}
+    break;
+
+  case 45:
+
+/* Line 1455 of yacc.c  */
+#line 88 "synt.y"
+    {strcpy(sauvType,(yyvsp[(1) - (1)].str));;}
+    break;
+
+  case 46:
+
+/* Line 1455 of yacc.c  */
+#line 89 "synt.y"
+    {strcpy(sauvType,(yyvsp[(1) - (1)].str));;}
+    break;
+
+  case 47:
+
+/* Line 1455 of yacc.c  */
+#line 90 "synt.y"
+    {strcpy(sauvType,(yyvsp[(1) - (1)].str));;}
+    break;
+
 
 
 /* Line 1455 of yacc.c  */
-#line 1494 "synt.tab.c"
+#line 1530 "synt.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1702,7 +1738,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 101 "synt.y"
+#line 99 "synt.y"
 
 main()
 {

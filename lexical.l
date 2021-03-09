@@ -36,6 +36,16 @@ extern YYSTYPE yylval;
                     CpTabSym++;
               }
         }
+   //définir la fonction pour inserer le type
+        void insererTYPE(char entite[],char type[])
+        {
+            int pos;
+            pos=recherche(entite);
+              if(pos!=-1)
+              {
+                    strcpy(ts[pos].TypeEntite,type);
+              }
+        }
   //définir la fonction afficher
         void afficher()
         {
@@ -74,8 +84,8 @@ Reel { yylval.str=strdup("Reel");
        return mc_reel;}
 Chaine {yylval.str=strdup("Chaine");
         return mc_chaine;}
-{idf} {  yylval.str=strdup(yytext);
-         if(yyleng<=25){ inserer(yytext,"idf");
+{idf} {  if(yyleng<=25){ inserer(yytext,"idf");
+                         yylval.str=strdup(yytext);
                          return idf;}
          else printf("erreur lexical : idf trop long : %s",yytext);
       }

@@ -1,5 +1,6 @@
 %{
 nb_ligne=1;
+char sauvType[20];
 %}
 %union{
        int entier;
@@ -74,9 +75,6 @@ DEC_SANS_AFF: mc_const TYPE idf pvg
 ;
 DEC_AC_AFF: mc_const TYPE idf mc_aff cst pvg
 ;
-signe : plus
-       |moins
-;
 DEC_TAB: TYPE LISTE_IDF_TAB pvg
 ;
 LISTE_IDF_TAB:idf_tab cr_ov cst cr_fr vrg LISTE_IDF_TAB
@@ -84,12 +82,12 @@ LISTE_IDF_TAB:idf_tab cr_ov cst cr_fr vrg LISTE_IDF_TAB
 ;
 DEC_VAR: TYPE LISTE_IDF pvg
 ;
-LISTE_IDF:idf vrg LISTE_IDF
-          |idf 
+LISTE_IDF:idf vrg LISTE_IDF {insererTYPE($1,sauvType);}
+          |idf {insererTYPE($1,sauvType);}
 ;
-TYPE: mc_entier
-      |mc_reel
-       |mc_chaine
+TYPE:mc_entier {strcpy(sauvType,$1);}
+    |mc_reel   {strcpy(sauvType,$1);}
+    |mc_chaine {strcpy(sauvType,$1);}
 ;
 LISTE_BIB: BIB LISTE_BIB
         |
