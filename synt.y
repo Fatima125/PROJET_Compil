@@ -1,4 +1,3 @@
-
 %{
 nb_ligne=1;
 char sauvType[20];
@@ -74,7 +73,7 @@ ECRIT:mc_out par_ov mc_chaine_car par_fr pvg
 DEC_CONST:DEC_AC_AFF
          |DEC_SANS_AFF           
 ;
-DEC_SANS_AFF: mc_const TYPE idf pvg
+DEC_SANS_AFF: mc_const TYPE idf pvg 
 ;
 DEC_AC_AFF: mc_const TYPE idf mc_aff cst pvg
 ;

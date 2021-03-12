@@ -68,7 +68,7 @@
 /* Copy the first part of user declarations.  */
 
 /* Line 189 of yacc.c  */
-#line 2 "synt.y"
+#line 1 "synt.y"
 
 nb_ligne=1;
 char sauvType[20];
@@ -150,7 +150,7 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 6 "synt.y"
+#line 5 "synt.y"
 
        int entier;
        char* str;
@@ -479,12 +479,12 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    14,    14,    17,    19,    20,    21,    23,    25,    26,
-      28,    29,    30,    32,    34,    35,    37,    38,    39,    40,
-      42,    43,    45,    48,    51,    52,    59,    60,    62,    64,
-      65,    67,    69,    70,    72,    74,    75,    77,    79,    81,
-      83,    86,    90,    92,    96,   101,   102,   103,   105,   106,
-     108,   110,   110
+       0,    13,    13,    16,    18,    19,    20,    22,    24,    25,
+      27,    28,    29,    31,    33,    34,    36,    37,    38,    39,
+      41,    42,    44,    47,    50,    51,    58,    59,    61,    63,
+      64,    66,    68,    69,    71,    73,    74,    76,    78,    80,
+      82,    85,    89,    91,    95,   100,   101,   102,   104,   105,
+     107,   109,   109
 };
 #endif
 
@@ -1474,7 +1474,7 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 14 "synt.y"
+#line 13 "synt.y"
     {printf("pgm syntaxiquement correcte");
                             YYACCEPT;}
     break;
@@ -1482,7 +1482,7 @@ yyreduce:
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 45 "synt.y"
+#line 44 "synt.y"
     {if(Declaration((yyvsp[(1) - (4)].str))==0)
                            printf("erreur semantique %s non declarer a la ligne %d\n",(yyvsp[(1) - (4)].str),nb_ligne);  
                         ;}
@@ -1491,7 +1491,7 @@ yyreduce:
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 48 "synt.y"
+#line 47 "synt.y"
     { if((yyvsp[(5) - (6)].entier)==0)
                                       printf("erreur semantique a la ligne %d division par 0\n",nb_ligne);
                                    ;}
@@ -1500,7 +1500,7 @@ yyreduce:
   case 40:
 
 /* Line 1455 of yacc.c  */
-#line 83 "synt.y"
+#line 82 "synt.y"
     {if((yyvsp[(3) - (6)].entier)<0)
                                          printf("erreur semantique la taille du tableau %s doit etre positive , a la ligne %d\n",(yyvsp[(1) - (6)].str),nb_ligne);
                                        ;}
@@ -1509,7 +1509,7 @@ yyreduce:
   case 41:
 
 /* Line 1455 of yacc.c  */
-#line 86 "synt.y"
+#line 85 "synt.y"
     {if((yyvsp[(3) - (4)].entier)<0)
                                          printf("erreur semantique la taille du tableau %s doit etre positive , a la ligne %d\n",(yyvsp[(1) - (4)].str),nb_ligne);
                                        ;}
@@ -1518,7 +1518,7 @@ yyreduce:
   case 43:
 
 /* Line 1455 of yacc.c  */
-#line 92 "synt.y"
+#line 91 "synt.y"
     { if(Declaration((yyvsp[(1) - (3)].str))==0)
                                     insererTYPE((yyvsp[(1) - (3)].str),sauvType);
                               else
@@ -1528,7 +1528,7 @@ yyreduce:
   case 44:
 
 /* Line 1455 of yacc.c  */
-#line 96 "synt.y"
+#line 95 "synt.y"
     { if(Declaration((yyvsp[(1) - (1)].str))==0)
                                     insererTYPE((yyvsp[(1) - (1)].str),sauvType);
                               else
@@ -1538,21 +1538,21 @@ yyreduce:
   case 45:
 
 /* Line 1455 of yacc.c  */
-#line 101 "synt.y"
+#line 100 "synt.y"
     {strcpy(sauvType,(yyvsp[(1) - (1)].str));;}
     break;
 
   case 46:
 
 /* Line 1455 of yacc.c  */
-#line 102 "synt.y"
+#line 101 "synt.y"
     {strcpy(sauvType,(yyvsp[(1) - (1)].str));;}
     break;
 
   case 47:
 
 /* Line 1455 of yacc.c  */
-#line 103 "synt.y"
+#line 102 "synt.y"
     {strcpy(sauvType,(yyvsp[(1) - (1)].str));;}
     break;
 
@@ -1771,7 +1771,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 112 "synt.y"
+#line 111 "synt.y"
 
 main()
 {

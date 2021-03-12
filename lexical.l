@@ -10,6 +10,8 @@ extern YYSTYPE yylval;
              char NomEntite[20];
              char CodeEntite[20];
              char TypeEntite[20];
+             char Constante[20];
+             char Valeur[20];
        }TypeTS;
   //initialisation d'un tableau
        TypeTS ts[100];
@@ -33,6 +35,7 @@ extern YYSTYPE yylval;
               {
                     strcpy(ts[CpTabSym].NomEntite,entite);
                     strcpy(ts[CpTabSym].CodeEntite,code);
+                    strcpy(ts[CpTabSym].Constante,"non");
                     CpTabSym++;
               }
         }
@@ -50,13 +53,13 @@ extern YYSTYPE yylval;
         void afficher()
         {
               printf("\n/**************Table des symboles*******************/\n");
-              printf("_________________________________________________\n");
-              printf("\t| NomEntite |  CodeEntite  | TypeEntite\n");
-              printf("_________________________________________________\n");
+              printf("__________________________________________________________________________________________\n");
+              printf("\t| NomEntite |  CodeEntite  | TypeEntite   | Constante    | Valeur \n");
+              printf("___________________________________________________________________________________________\n");
               int i=0;
               while(i<CpTabSym)
               {
-                    printf("\t|%10s |%12s  | %12s\n",ts[i].NomEntite,ts[i].CodeEntite,ts[i].TypeEntite);
+                    printf("\t|%10s |%12s  | %12s | %12s | %12s \n",ts[i].NomEntite,ts[i].CodeEntite,ts[i].TypeEntite,ts[i].Constante,ts[i].Valeur);
                     i++;
               }
         } 
